@@ -1,0 +1,14 @@
++ mkdir -p /tmp/rmlint
++ umount /tmp/rmlint
+umount: /tmp/rmlint: not mounted.
++ true
++ mount -t tmpfs tmpfs /tmp/rmlint
++ cd /tmp/rmlint
++ du -sh /mnt/docker/overlay2
+822G	/mnt/docker/overlay2
++ ulimit -n 65535
++ rmlint --threads=64 -v -T df --config=sh:handler=hardlink /mnt/docker/overlay2
++ ./rmlint.sh -d
++ sync
++ du -sh /mnt/docker/overlay2
+301G	/mnt/docker/overlay2

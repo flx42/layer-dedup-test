@@ -1,0 +1,25 @@
++ export RESTIC_REPOSITORY=/tmp/restic
++ RESTIC_REPOSITORY=/tmp/restic
++ export RESTIC_PASSWORD=password
++ RESTIC_PASSWORD=password
++ umount /tmp/restic
+umount: /tmp/restic: not mounted.
++ true
++ mkdir -p /tmp/restic
++ mount -t tmpfs -o size=90% tmpfs /tmp/restic
++ restic init
+created restic repository 381f57f0e2 at /tmp/restic
+
+Please note that knowledge of your password is required to access
+the repository. Losing your password means that your data is
+irrecoverably lost.
++ restic backup /mnt/docker/overlay2
+scan [/mnt/docker/overlay2]
+[4:47] 3254412 directories, 26534922 files, 828.901 GiB
+scanned 3254412 directories, 26534922 files in 4:47
+[37:53] 100.00%  828.901 GiB / 828.901 GiB  29789334 / 29789334 items  0 errors  ETA 0:00 
+
+duration: 37:53
+snapshot 4c536e09 saved
++ du -sh /tmp/restic
+244G	/tmp/restic
